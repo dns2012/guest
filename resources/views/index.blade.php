@@ -25,7 +25,7 @@
                         <h5 class="card-title">Pilih Pengantin</h5>
                         <form action="" method="GET">
                             <div class="form-group">
-                                <select class="form-control" name="bride">
+                                <select class="form-select" name="bride">
                                     <option value="dani">Dani Susanto</option>
                                     <option value="diah">Diah Permatasari</option>
                                 </select>
@@ -90,23 +90,31 @@
                 data: {keyword: $(this).val(), bride: "{{ $brideKey }}"},
                 success: function(data) {
                     var html = '';
-                    for(var i in data) {
-                        html += '<div class="card mb-1">'
-                        +'<div class="card-body">'
-                        +'<div class="row align-items-center">'
-                        +'<div class="col-9">'
-                        +'<h5 class="card-title"><b>' + data[i]['name'] + '</b></h5>'
-                        +'</div>'
-                        +'<div class="col-3">'
-                        +'<a href="/' + data[i]['id'] + '" class="btn btn-primary">HADIR</a>'
-                        +'</div>'
-                        +'</div>'
-                        +'</div>'
-                        +'</div>'
+                    if (data.length > 0) {
+                        for(var i in data) {
+                            html += '<div class="card mb-1">'
+                            +'<div class="card-body">'
+                            +'<div class="row align-items-center">'
+                            +'<div class="col-9">'
+                            +'<h5 class="card-title"><b>' + data[i]['name'] + '</b></h5>'
+                            +'</div>'
+                            +'<div class="col-3">'
+                            +'<a href="/' + data[i]['id'] + '" class="btn btn-primary">HADIR</a>'
+                            +'</div>'
+                            +'</div>'
+                            +'</div>'
+                            +'</div>'
+                        }
+                    } else {
+                        html += '<div class="text-center">Tamu tidak ditemukan</div>'
                     }
                     $('#guest-box').html(html)
                 }
             })
         })
+
+        setTimeout(function() {
+            $('.alert-success').hide();
+        }, 5000)
     })
 </script>

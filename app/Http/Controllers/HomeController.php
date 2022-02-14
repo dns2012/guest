@@ -87,7 +87,7 @@ class HomeController extends Controller
         if (! empty($user)) {
             $user->status = 1;
             $user->save();
-            return redirect()->back()->with('message', "<b>{$user->name}</b> berhasil!");
+            return redirect()->back()->with('message', "<b>{$user->name}</b> berhasil ditambahkan ke daftar hadir! Jangan lupa berikan kartu souvenirnya");
         }
     }
 
